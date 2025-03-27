@@ -1,5 +1,7 @@
 import React from "react";
 
+import IshangoViewer from './IshangoViewer';
+
 export default function TimelineApp() {
   return (
     <div style={{ padding: "2rem", fontFamily: "Arial" }}>
@@ -11,7 +13,9 @@ export default function TimelineApp() {
       <div style={{ marginTop: "2rem", background: "#f19b3f", padding: "1rem", borderRadius: "12px" }}>
         <strong>🔢 Exemple :</strong> L’os d’Ishango (~20 000 av. J.-C.) est considéré comme 
         un des plus anciens objets mathématiques au monde.
-      </div>
-    </div>
+        <IshangoViewer />
+</div>
+      <IshangoViewer />
+</div>
   );
 }
