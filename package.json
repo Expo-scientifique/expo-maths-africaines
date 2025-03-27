@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-frise-3d",
+  "name": "nextjs-frise-3d-vercel",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
