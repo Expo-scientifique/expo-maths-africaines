@@ -1,55 +1,46 @@
+import React from "react";
+import ModelViewer from "./ModelViewer";
 
-import React, { useState } from "react";
-import IshangoViewer from "./IshangoViewer";
-
-const timelineData = [
+const timelineItems = [
   {
     title: "Os d’Ishango",
     date: "~20 000 av. J.-C.",
-    description: "Premier objet mathématique connu. Bâton gravé découvert en RDC.",
-    model: <IshangoViewer />
+    description: "Premier objet mathématique connu. Découvert en RDC.",
+    modelPath: "/models/Ishango/"
   },
   {
     title: "Papyrus de Rhind",
     date: "~1650 av. J.-C.",
-    description: "Ancien manuel égyptien de géométrie et d’arithmétique.",
-    model: null
+    description: "Manuel mathématique de l’Égypte antique.",
+    modelPath: "/models/Papyrus/"
   },
   {
-    title: "Village Ba-ila (Zambie)",
+    title: "Village Ba-ila",
     date: "XVIe siècle",
-    description: "Village organisé en fractale : chaque maison a la même forme que le village.",
-    model: null
+    description: "Architecture fractale en Zambie.",
+    modelPath: "/models/Village/"
   }
 ];
 
 export default function TimelineApp() {
-  const [selected, setSelected] = useState(timelineData[0]);
-
   return (
-    <div className="min-h-screen bg-[#fff8f1] p-6 font-sans">
-      <h1 className="text-3xl font-bold text-[#d63b1b] mb-2">📜 Frise Mathématique Africaine</h1>
-      <p className="text-base mb-6">Explorez les grandes découvertes mathématiques d’Afrique à travers les siècles.</p>
-
-      <div className="bg-[#f19b3f] p-4 rounded-xl mb-6">
-        <h2 className="text-lg font-semibold">📌 {selected.title}</h2>
-        <p className="text-sm text-[#683c11]">{selected.date}</p>
-        <p className="mt-2">{selected.description}</p>
-        {selected.model && <div className="mt-4">{selected.model}</div>}
-      </div>
-
-      <div className="flex space-x-4 overflow-x-auto border-t border-[#d48d5b] pt-4">
-        {timelineData.map((item, idx) => (
-          <button
-            key={idx}
-            onClick={() => setSelected(item)}
-            className={`min-w-[160px] p-3 rounded-lg shadow-md transition-colors duration-300 text-left hover:bg-[#d63b1b] hover:text-white ${
-              selected.title === item.title ? "bg-[#d63b1b] text-white" : "bg-white"
-            }`}
-          >
-            <div className="text-sm font-semibold">{item.title}</div>
-            <div className="text-xs text-[#683c11]">{item.date}</div>
-          </button>
+    <div style={{ backgroundColor: '#fff8f1', padding: '2rem', fontFamily: 'Segoe UI' }}>
+      <h1 style={{ color: '#d63b1b', fontSize: '28px' }}>📜 Frise Mathématique Africaine</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3rem', position: 'relative' }}>
+        {timelineItems.map((item, index) => (
+          <div key={index} style={{ width: '30%', textAlign: 'center' }}>
+            <div style={{
+              background: '#d63b1b',
+              width: '10px',
+              height: '60px',
+              margin: '0 auto',
+              borderRadius: '8px'
+            }}></div>
+            <h2 style={{ color: '#683c11', marginTop: '1rem' }}>{item.title}</h2>
+            <p style={{ fontSize: '14px', color: '#333' }}>{item.date}</p>
+            <p style={{ fontSize: '13px' }}>{item.description}</p>
+            <ModelViewer modelPath={item.modelPath} />
+          </div>
         ))}
       </div>
     </div>
