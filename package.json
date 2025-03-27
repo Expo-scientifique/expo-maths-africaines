@@ -1,5 +1,5 @@
 {
-  "name": "expo-maths-africaines-frise",
+  "name": "expo-maths-africaines-3d",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -8,9 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^10.12.16",
+    "@react-three/drei": "^9.88.11",
+    "@react-three/fiber": "^8.13.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "three": "^0.158.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.3",
