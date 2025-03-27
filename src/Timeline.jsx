@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const data = [
   {
@@ -8,7 +8,7 @@ const data = [
     year: "-20 000",
     description:
       "Découvert en RDC, cet os gravé est considéré comme l’un des premiers outils mathématiques. Il montre des motifs de doublage et des nombres premiers.",
-    imageUrl: "/images/ishango.jpg"
+    sketchfabUrl: "https://sketchfab.com/models/3840880170044c589b09afe4847986f8/embed"
   },
   {
     id: "rhind",
@@ -16,7 +16,7 @@ const data = [
     year: "-1650",
     description:
       "Ce papyrus égyptien est un manuel de mathématiques anciennes contenant des problèmes de géométrie, d’aires, de volumes et de fractions unitaires.",
-    imageUrl: "/images/rhind.jpg"
+    sketchfabUrl: null
   },
   {
     id: "baila",
@@ -24,13 +24,12 @@ const data = [
     year: "1600s",
     description:
       "Village de Zambie dont la structure présente un motif fractal : la disposition des maisons reproduit la forme d’une maison individuelle.",
-    imageUrl: "/images/baila.jpg"
+    sketchfabUrl: null
   }
 ];
 
 export default function App() {
   const [active, setActive] = useState(null);
-  const [zoomed, setZoomed] = useState(null);
 
   return (
     <div className="bg-[#fff8f1] min-h-screen font-sans">
@@ -41,7 +40,7 @@ export default function App() {
       <div className="relative w-full overflow-x-auto px-4 py-6">
         <div className="h-1 bg-[#d48d5b] absolute top-1/2 left-0 right-0" />
         <div className="flex gap-12 relative z-10 justify-start px-4">
-          {data.map((event) => (
+          {data.map((event, index) => (
             <motion.div
               key={event.id}
               className="flex flex-col items-center cursor-pointer"
@@ -68,28 +67,23 @@ export default function App() {
           >
             <h2 className="text-2xl font-bold text-[#d63b1b] mb-2">{event.title}</h2>
             <p className="text-[#683c11] mb-4">{event.description}</p>
-            {event.imageUrl && (
-              <div className="overflow-hidden rounded-xl border cursor-zoom-in" onClick={() => setZoomed(event.imageUrl)}>
-                <img src={event.imageUrl} alt={event.title} className="w-full h-auto rounded-xl" />
+            {event.sketchfabUrl && (
+              <div className="overflow-hidden rounded-xl border">
+                <iframe
+                  title={event.title}
+                  src={event.sketchfabUrl}
+                  frameBorder="0"
+                  width="100%"
+                  height="300"
+                  allow="autoplay; fullscreen; vr"
+                  mozallowfullscreen="true"
+                  webkitallowfullscreen="true"
+                ></iframe>
               </div>
             )}
           </motion.div>
         ))}
       </div>
-
-      <AnimatePresence>
-        {zoomed && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setZoomed(null)}
-          >
-            <img src={zoomed} alt="Zoom" className="max-h-[90%] max-w-[90%] rounded-lg shadow-lg" />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
