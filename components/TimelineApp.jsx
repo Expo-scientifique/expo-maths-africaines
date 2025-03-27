@@ -24,21 +24,17 @@ const timelineItems = [
 
 export default function TimelineApp() {
   return (
-    <div style={{ backgroundColor: '#fff8f1', padding: '2rem', fontFamily: 'Segoe UI' }}>
-      <h1 style={{ color: '#d63b1b', fontSize: '28px' }}>📜 Frise Mathématique Africaine</h1>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3rem', position: 'relative' }}>
+    <div style={{ backgroundColor: '#fff8f1', padding: '2rem' }}>
+      <h1 style={{ color: '#d63b1b', fontSize: '28px', textAlign: 'center' }}>
+        📜 Frise Mathématique Africaine
+      </h1>
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '3rem', borderTop: '6px solid #f19b3f', paddingTop: '2rem' }}>
         {timelineItems.map((item, index) => (
-          <div key={index} style={{ width: '30%', textAlign: 'center' }}>
-            <div style={{
-              background: '#d63b1b',
-              width: '10px',
-              height: '60px',
-              margin: '0 auto',
-              borderRadius: '8px'
-            }}></div>
+          <div key={index} style={{ textAlign: 'center', width: '30%' }}>
+            <div style={{ width: '16px', height: '16px', background: '#d63b1b', borderRadius: '50%', margin: '0 auto' }}></div>
             <h2 style={{ color: '#683c11', marginTop: '1rem' }}>{item.title}</h2>
             <p style={{ fontSize: '14px', color: '#333' }}>{item.date}</p>
-            <p style={{ fontSize: '13px' }}>{item.description}</p>
+            <p style={{ fontSize: '13px', minHeight: 40 }}>{item.description}</p>
             <ModelViewer modelPath={item.modelPath} />
           </div>
         ))}

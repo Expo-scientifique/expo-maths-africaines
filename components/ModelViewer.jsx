@@ -32,7 +32,7 @@ function Model({ path }) {
 
 export default function ModelViewer({ modelPath }) {
   return (
-    <div style={{ height: 300, marginTop: 20 }}>
+    <div style={{ height: 250, marginTop: 20 }}>
       <Canvas camera={{ position: [1, 1, 2] }}>
         <ambientLight intensity={1.5} />
         <directionalLight position={[2, 2, 2]} />
