@@ -1,28 +1,31 @@
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-import Timeline from '../components/Timeline';
-import { Box, Typography } from '@mui/material';
-
-const ModelViewer = dynamic(() => import('../components/ModelViewer'), { ssr: false });
-
-const data = [
-  { year: "-20000", title: "Os d'Ishango", model: "/models/ishango.glb" },
-  { year: "-1650", title: "Papyrus de Rhind", model: "/models/rhind.glb" },
-  { year: "2020", title: "Village fractal", model: "/models/fractal.glb" }
-];
+import Head from "next/head";
+import { Container, Typography, Paper, Box, Button, Stack } from "@mui/material";
+import IshangoViewer from "../components/IshangoViewer";
 
 export default function Home() {
-  const [selected, setSelected] = useState(data[0]);
-
   return (
-    <Box sx={{ p: 4, backgroundColor: '#fff3e0' }}>
-      <Typography variant="h4" gutterBottom style={{ color: '#683c11' }}>
-        Les Mathématiques Africaines en Action
-      </Typography>
-      <Timeline data={data} onSelect={setSelected} />
-      <Box sx={{ mt: 4, height: '60vh' }}>
-        <ModelViewer modelPath={selected.model} />
-      </Box>
-    </Box>
+    <>
+      <Head>
+        <title>Frise mathématique</title>
+      </Head>
+      <Container maxWidth="md" sx={{ py: 4 }}>
+        <Paper elevation={3} sx={{ p: 4, borderRadius: 4 }}>
+          <Typography variant="h4" gutterBottom color="primary">
+            Bâton d'Ishango
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Découvert en RDC, cet os gravé est considéré comme l’un des premiers outils mathématiques. 
+            Il montre des motifs de doublage et des nombres premiers.
+          </Typography>
+          <Box sx={{ mt: 3 }}>
+            <IshangoViewer />
+          </Box>
+        </Paper>
+        <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
+          <Button variant="contained" color="secondary">-20000</Button>
+          <Button variant="outlined" color="primary">-1650</Button>
+        </Stack>
+      </Container>
+    </>
   );
 }
