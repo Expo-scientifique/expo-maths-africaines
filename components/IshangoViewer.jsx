@@ -1,43 +1,29 @@
-import React, { useEffect, useState, Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stage } from "@react-three/drei";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+import { Canvas, useLoader } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { Suspense } from 'react';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 function Model() {
-  const [object, setObject] = useState();
+  const obj = useLoader(OBJLoader, '/models/Final_Ishango/Final_Ishango.obj');
 
-  useEffect(() => {
-    const mtlLoader = new MTLLoader();
-    mtlLoader.setPath("/models/Final_Ishango/");
-    mtlLoader.load("Final_Ishango.mtl", (materials) => {
-      materials.preload();
-      const loader = new OBJLoader();
-      loader.setMaterials(materials);
-      loader.setPath("/models/Final_Ishango/");
-      loader.load("Final_Ishango.obj", (obj) => {
-        obj.scale.set(0.01, 0.01, 0.01);
-        setObject(obj);
-      });
-    });
-  }, []);
+  obj.traverse((child) => {
+    if (child.isMesh && child.material) {
+      child.material.color.set('#a5825a'); // Couleur beige claire
+    }
+  });
 
-  return object ? <primitive object={object} /> : null;
+  return <primitive object={obj} />;
 }
 
 export default function IshangoViewer() {
   return (
-    <div style={{ height: 400, borderRadius: 12, overflow: "hidden" }}>
-      <Canvas camera={{ position: [1, 1, 2] }}>
-        <ambientLight intensity={1} />
-        <directionalLight position={[2, 2, 2]} intensity={1} />
-        <Suspense fallback={null}>
-          <Stage>
-            <Model />
-          </Stage>
-        </Suspense>
-        <OrbitControls />
-      </Canvas>
-    </div>
+    <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+      <ambientLight intensity={1.8} />
+      <directionalLight position={[5, 5, 5]} intensity={1.2} />
+      <Suspense fallback={null}>
+        <Model />
+      </Suspense>
+      <OrbitControls />
+    </Canvas>
   );
 }
