@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "dependencies": {
     "next": "latest",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "@mui/material": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "three": "latest",
-    "@react-three/fiber": "latest",
-    "@react-three/drei": "latest"
+    "three": "^0.164.1",
+    "@react-three/fiber": "^8.14.3",
+    "@react-three/drei": "^9.96.4"
   },
   "scripts": {
     "dev": "next dev",
