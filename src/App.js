@@ -3,7 +3,7 @@ import MathAfriqueThroughTime from './components/MathAfriqueThroughTime';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <MathAfriqueThroughTime />
     </div>
   );
